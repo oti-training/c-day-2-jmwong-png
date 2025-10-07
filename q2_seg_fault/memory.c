@@ -13,10 +13,18 @@
 #include "memory.h"
 
 float read_voltage_sensor(int sensor_id) {
+
     float voltages[5] = {1.8f, 2.0f, 2.5f, 3.0f, 3.3f};  // Valid sensors 0-4
 
+    if (sensor_id <0 || sensor_id >= 5)
+    {
+    	return -1.0f;
+    }
+    else 
+    {
     // TODO: Debug this - add bounds check for sensor_id (0-4 valid)
-    return voltages[sensor_id];
+    	return voltages[sensor_id];
+    }
 }
 
 #ifndef UNIT_TEST
@@ -25,8 +33,14 @@ int main(void) {
     printf("Reading from sensor 5...\n");  // Invalid ID, will cause segfault
 
     float voltage = read_voltage_sensor(5);  // This causes segfault
-    printf("Voltage: %.1fV\n", voltage);
-
+    if (voltage < 0)
+    {
+    	printf ("Invalid Sensor ID");
+    }
+    else
+    {
+    	printf("Voltage: %.1fV\n", voltage);
+    }
     return 0;
 }
 #endif
