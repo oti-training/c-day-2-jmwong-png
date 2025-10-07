@@ -41,6 +41,8 @@ int main(void) {
     {
     	printf("Voltage: %.1fV\n", voltage);
     }
+    printf("Voltage: %.1fV\n", voltage);
+   
     return 0;
 }
 #endif
